@@ -1,0 +1,55 @@
+<div class="container my-container">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <h5 class="card-title text-center mb-4">Log into your account</h5>
+            <form [formGroup]="loginForm">
+              <p class="text-danger">{{loginError}}</p>
+              <div class="mb-3">
+                <label for="exampleInputUsername1" class="form-label">Username</label>
+                <input formControlName="username" type="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp">  
+                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="text-danger">
+                  <div *ngIf="username.errors?.['required']">
+                    The username is required.
+                  </div>
+                </div>
+              </div>
+  
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                  <div *ngIf="password.errors?.['required']">
+                    The password is required.
+                  </div>
+                </div> 
+              </div>
+              <button type="submit" (click)="login()" class="btn btn-primary">Sign in</button>
+            </form>
+  
+            <hr>
+            <div class="row">
+              <div class="col text-start">
+                <p class="mb-0">Not registered yet?</p>
+              </div>
+              <div class="col text-end">
+                <a class="nuevaCuenta" [routerLink]="['/registro']">Create an account</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-3">
+        <div class="background-image-container">
+          <div class="text-center p-4">
+            <h2>Welcome!</h2>
+            <p>It's time to start your journey towards a healthier and more active life.</p>
+            <p>Get moving to push your limits and reach your goals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

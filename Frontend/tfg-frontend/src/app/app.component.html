@@ -1,0 +1,14 @@
+<!--<div class="sidebar" *ngIf="mostrarSidebar()"> 
+  <app-sidebar></app-sidebar>
+  <app-chat></app-chat>
+</div>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>-->
+
+
+<router-outlet></router-outlet>
+
+<div class="sidebar" *ngIf="mostrarSidebar()"> 
+  <app-chat></app-chat>
+</div>

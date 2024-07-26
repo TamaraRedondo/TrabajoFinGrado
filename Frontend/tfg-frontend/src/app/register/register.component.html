@@ -1,0 +1,89 @@
+<div class="container my-container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="background-image-container d-flex justify-content-end align-items-end">
+        <div class="text-left p-4">
+          <h2>Sign up now!</h2>
+          <p>It's time to take the first step towards a new adventure. Don't miss the opportunity to be part of our
+            community.</p>
+          <p>Register on our platform to access tools to help you achieve your goals more effectively and enjoyably.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-4">Create Account</h5>
+          <a href="/inicio" class="btn btn-link position-absolute top-0 start-0 m-3">Sign in</a>
+          <form [formGroup]="registerForm">
+            <div class="mb-3">
+              <label for="exampleInputUsername" class="form-label">Username*</label>
+              <input formControlName="username" type="text" class="form-control" id="exampleInputUsername"
+                aria-describedby="usernameHelp">
+              <div class="text-danger error-message"
+                [style.visibility]="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched) ? 'visible' : 'hidden'">
+                <div *ngIf="registerForm.get('username')?.errors?.['required']">
+                  The username is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="exampleInputFirstname" class="form-label">Name</label>
+                <input formControlName="firstname" type="text" class="form-control" id="exampleInputFirstname"
+                  aria-describedby="firstnameHelp">
+                <div class="text-danger error-message"
+                  [style.visibility]="registerForm.get('firstname')?.invalid && (registerForm.get('firstname')?.dirty || registerForm.get('firstname')?.touched) ? 'visible' : 'hidden'">
+                </div>
+              </div>
+              <div class="col">
+                <label for="exampleInputLastname" class="form-label">Last name</label>
+                <input formControlName="lastname" type="text" class="form-control" id="exampleInputLastname"
+                  aria-describedby="lastnameHelp">
+                <div class="text-danger error-message"
+                  [style.visibility]="registerForm.get('lastname')?.invalid && (registerForm.get('lastname')?.dirty || registerForm.get('lastname')?.touched) ? 'visible' : 'hidden'">
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail" class="form-label">Email*</label>
+              <input formControlName="email" type="email" class="form-control" id="exampleInputEmail"
+                aria-describedby="emailHelp">
+              <div class="text-danger error-message"
+                [style.visibility]="email?.invalid && (email?.dirty || email?.touched) ? 'visible' : 'hidden'">
+                <div *ngIf="email?.errors?.['required']">
+                  Email is required.
+                </div>
+                <div *ngIf="email?.errors?.['email']">
+                  Please enter a valid email.
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputPassword" class="form-label">Password*</label>
+              <input formControlName="password" type="password" class="form-control" id="exampleInputPassword">
+              <div class="text-danger error-message"
+                [style.visibility]="password?.invalid && (password?.dirty || password?.touched) ? 'visible' : 'hidden'">
+                <div *ngIf="password?.errors?.['required']">
+                  The password is required.
+                </div>
+                <div *ngIf="password?.errors?.['minlength']">
+                  The password must be at least 8 characters long.
+                </div>
+                <div *ngIf="password?.errors?.['invalidPassword']">
+                  The password must contain at least one number and one special character (!#$%^&*).
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" (click)="register()">Continue with sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

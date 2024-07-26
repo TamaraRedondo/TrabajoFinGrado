@@ -1,0 +1,629 @@
+<div class="main-layout">
+    <app-sidebar></app-sidebar>
+
+    <div class="main-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <!-- Card 1/4 -->
+                    <div class="col-md-3">
+                        <div class="card card-perfil">
+                            <div class="card-body">
+                                <ul style="list-style-type: none;">
+                                    <div class="user-photo-container">
+                                        <div class="user-photo-frame">
+                                            <i class="fas fa-user user-photo-icon"></i>
+                                        </div>
+                                    </div>
+                                    <h4>
+                                        <li *ngIf="!isEditing" [ngClass]="'texto-azul'">{{ userInfo?.firstname }} {{
+                                            userInfo?.lastname }}
+                                        </li>
+                                    </h4>
+                                    <li *ngIf="!isEditing"> Username: {{ userInfo?.username }}</li>
+                                    <li *ngIf="!isEditing"> Email: {{ userInfo?.email }}</li>
+                                    <ng-container *ngIf="isEditing">
+                                        <li>Username: <input type="text" class="input" [(ngModel)]="userInfo.username"
+                                                style="width: 122px">
+                                        </li>
+                                        <li>Name: <input type="text" class="input" [(ngModel)]="userInfo.firstname"
+                                                style="width: 150px">
+                                        </li>
+                                        <li>Last name: <input type="text" class="input" [(ngModel)]="userInfo.lastname"
+                                                style="width: 120px">
+                                        </li>
+                                        <li>Email: <input type="email" class="input" [(ngModel)]="userInfo.email"
+                                                style="width: 153px"></li>
+                                    </ng-container>
+
+                                    <hr class="hr" style="margin-bottom:25px;">
+
+                                    <div *ngIf="selecciones && selecciones.length > 0 && !isEditing">
+                                        <h5>General Information</h5>
+                                        <div *ngFor="let seleccion of selecciones.slice(0, 4); let i = index">
+                                            <div>
+                                                {{ textosPersonalizados[i] }}:
+                                                <ng-container *ngIf="seleccion.respuestaDesarrollo">{{
+                                                    seleccion.respuestaDesarrollo}}</ng-container>
+                                                <ng-container *ngIf="!seleccion.respuestaDesarrollo">{{
+                                                    seleccion.opcionSeleccionada}}</ng-container>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div *ngIf="selecciones && selecciones.length > 0 && isEditing">
+                                        <div *ngFor="let seleccion of selecciones.slice(0, 2); let i = index">
+                                            <div>
+                                                {{ textosPersonalizados[i] }}:
+                                                <input type="text" class="input"
+                                                    [(ngModel)]="seleccion.opcionSeleccionada"
+                                                    style="width:110px; margin-top:0px; margin-bottom:7px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="selecciones && selecciones.length > 0 && isEditing">
+
+                                        <div>
+                                            {{ textosPersonalizados[3] }}:
+                                            <select id="opciones-4" [(ngModel)]="opcionSeleccionada[4]"
+                                                style="width:140px; margin-bottom:35px">
+                                                <option *ngFor="let opcion of opciones[4]" [value]="opcion">{{
+                                                    opcion }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>-->
+                                </ul>
+                                <div class="text-right">
+                                    <button *ngIf="!isEditing" class="btn btn-primary" style="margin-top: 250px;"
+                                        (click)="enableEditing()">Edit Profile</button>
+                                        <div class="button-group">
+                                    <button *ngIf="isEditing" class="btn btn-success" style="margin-top:328px;"
+                                        (click)="onSubmit()">Save Changes</button>
+                                    <button *ngIf="isEditing" class="btn btn-danger" style="margin-top:328px;"
+                                        (click)="cancelEdit()">Cancel</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3/4 -->
+                    <div class="col-md-8">
+                        <div class="card card-salud">
+                            <div class="card-header bg-primary text-white">
+                                <div class="row font-weight-bold align-items-center"
+                                    style="margin-top: 10px; margin-bottom: 10px">
+                                    <div class="col-md-5 text-center">Question</div>
+                                    <div class="col-md-5 text-center">Selected Option</div>
+                                    <div class="col-md-2 text-center">Action</div>
+                                </div>
+                            </div>
+                            <div class="section" style="margin-left: 30px;">
+                                <h6><i class="fas fa-info-circle me-2"
+                                        style="margin-top: 15px;"></i>Key Aspects
+                                </h6>
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[4] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[4]">
+                                        <ng-container
+                                            *ngIf="selecciones[4]?.respuestaDesarrollo; else opcionSeleccionada1">
+                                            <i></i>{{ selecciones[4].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada1>{{ selecciones[4].opcionSeleccionada
+                                            }}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[4]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(4)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[4]">
+                                        <select id="opciones-5" [(ngModel)]="opcionSeleccionada[5]">
+                                            <option *ngFor="let opcion of opciones[5]" [value]="opcion">{{ opcion }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[4]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(5)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[4]" style="margin-left:-15px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(5)">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[5] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[5]">
+                                        <ng-container
+                                            *ngIf="selecciones[5].respuestaDesarrollo; else opcionSeleccionada2">
+                                            <i></i>{{ selecciones[5].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada2>{{
+                                            selecciones[5].opcionSeleccionada}}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[5]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(5)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[5]">
+                                        <select id="opciones-5" [(ngModel)]="opcionSeleccionada[6]">
+                                            <option *ngFor="let opcion of opciones[6]" [value]="opcion">{{ opcion }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[5]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(6)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[5]" style="margin-left:-15px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(6)">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[6] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[6]">
+                                        <ng-container
+                                            *ngIf="selecciones[6].respuestaDesarrollo; else opcionSeleccionada2">
+                                            <i></i>{{ selecciones[6].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada2>{{ selecciones[6].opcionSeleccionada
+                                            }}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[6]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(6)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[6]">
+                                        <select id="opciones-5" [(ngModel)]="opcionSeleccionada[7]">
+                                            <option *ngFor="let opcion of opciones[7]" [value]="opcion">{{ opcion }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[6]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(7)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[6]" style="margin-left:-15px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(7)">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[7] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[7]">
+                                        <ng-container
+                                            *ngIf="selecciones[7].respuestaDesarrollo; else opcionSeleccionada2">
+                                            <i></i>{{ selecciones[7].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada2>{{ selecciones[7].opcionSeleccionada
+                                            }}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[7]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(7)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[7]">
+                                        <select id="opciones-7" [(ngModel)]="opcionSeleccionada[8]">
+                                            <option *ngFor="let opcion of opciones[8]" [value]="opcion">{{ opcion }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[7]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(8)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[7]" style="margin-left:-15px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(8)">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[8] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[8]">
+                                        <ng-container
+                                            *ngIf="selecciones[8].respuestaDesarrollo; else opcionSeleccionada2">
+                                            <i></i>{{ selecciones[8].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada2>{{ selecciones[8].opcionSeleccionada
+                                            }}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[8]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(8)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[8]">
+                                        <select id="opciones-8" [(ngModel)]="opcionSeleccionada[9]">
+                                            <option *ngFor="let opcion of opciones[9]" [value]="opcion">{{ opcion }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[8]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(9)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[8]" style="margin-left:-15px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(9)">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[9] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[9]">
+                                        <ng-container
+                                            *ngIf="selecciones[9].respuestaDesarrollo; else opcionSeleccionada2">
+                                            <i></i>{{ selecciones[9].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada2>{{ selecciones[9].opcionSeleccionada
+                                            }}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[9]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(9)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[9]">
+                                        <select id="opciones-9" [(ngModel)]="opcionSeleccionada[10]">
+                                            <option *ngFor="let opcion of opciones[10]" [value]="opcion">{{ opcion
+                                                }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[9]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(10)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[9]" style="margin-left:-15px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(10)">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[10] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[10]">
+                                        <ng-container
+                                            *ngIf="selecciones[10].respuestaDesarrollo; else opcionSeleccionada2">
+                                            <i></i>{{ selecciones[10].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada2>{{ selecciones[10].opcionSeleccionada
+                                            }}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[10]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(10)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[10]">
+                                        <select id="opciones-10" [(ngModel)]="opcionSeleccionada[11]">
+                                            <option *ngFor="let opcion of opciones[11]" [value]="opcion">{{ opcion
+                                                }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[10]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(11)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[10]" style="margin-left:-5px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(11)">Cancel</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr>
+
+                            <div class="section" style="margin-left: 30px; margin-bottom: 20px;">
+                                <h6><i class="fas fa-heartbeat me-2" style="margin-left: -10px;"></i>Lifestyle</h6>
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[11] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[11]">
+                                        <ng-container
+                                            *ngIf="selecciones[11].respuestaDesarrollo; else opcionSeleccionada2">
+                                            <i></i>{{ selecciones[11].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada2>{{ selecciones[11].opcionSeleccionada
+                                            }}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[11]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(11)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[11]">
+                                        <select id="opciones-11" [(ngModel)]="opcionSeleccionada[12]">
+                                            <option *ngFor="let opcion of opciones[12]" [value]="opcion">{{ opcion
+                                                }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[11]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(12)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[11]" style="margin-left:-15px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(12)">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[12] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[12]">
+                                        <ng-container
+                                            *ngIf="selecciones[12].respuestaDesarrollo; else opcionSeleccionada2">
+                                            <i></i>{{ selecciones[12].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada2>{{ selecciones[12].opcionSeleccionada
+                                            }}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[12]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(12)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[12]">
+                                        <select id="opciones-12" [(ngModel)]="opcionSeleccionada[13]">
+                                            <option *ngFor="let opcion of opciones[13]" [value]="opcion">{{ opcion
+                                                }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[12]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(13)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[12]" style="margin-left:-15px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(13)">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[13] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[13]">
+                                        <ng-container
+                                            *ngIf="selecciones[13].respuestaDesarrollo; else opcionSeleccionada2">
+                                            <i class="fas fa-exclamation-triangle me-2"></i>{{
+                                            selecciones[13].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada2>{{ selecciones[13].opcionSeleccionada
+                                            }}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[13]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(13)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[13]">
+                                        <select id="opciones-13" [(ngModel)]="opcionSeleccionada[14]">
+                                            <option *ngFor="let opcion of opciones[14]" [value]="opcion">{{ opcion
+                                                }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[13]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(14)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[13]" style="margin-left:-15px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(14)">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[14] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[14]">
+                                        <ng-container
+                                            *ngIf="selecciones[14].respuestaDesarrollo; else opcionSeleccionada2">
+                                            <i class="fas fa-exclamation-triangle me-2"></i>{{
+                                            selecciones[14].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada2>{{ selecciones[14].opcionSeleccionada
+                                            }}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[14]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(14)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[14]">
+                                        <select id="opciones-14" [(ngModel)]="opcionSeleccionada[15]">
+                                            <option *ngFor="let opcion of opciones[15]" [value]="opcion">{{ opcion
+                                                }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[14]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(15)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[14]" style="margin-left:-15px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(15)">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center" style="margin: 2px;">
+                                    <div class="col-md-5">
+                                        <strong>{{ textosPersonalizados[15] }}</strong>
+                                    </div>
+                                    <div class="col-md-5" *ngIf="!modoEditar[15]">
+                                        <ng-container
+                                            *ngIf="selecciones[15].respuestaDesarrollo; else opcionSeleccionada2">
+                                            <i class="fas fa-exclamation-triangle me-2"></i>{{
+                                            selecciones[15].respuestaDesarrollo }}
+                                        </ng-container>
+                                        <ng-template #opcionSeleccionada2>{{ selecciones[15].opcionSeleccionada
+                                            }}</ng-template>
+                                    </div>
+                                    <div class="col-md-2 text-center" *ngIf="!modoEditar[15]">
+                                        <button class="btn btn-primary btn-sm"
+                                            (click)="activarModoEditar(15)">Edit</button>
+                                    </div>
+
+                                    <div class="col-md-5" *ngIf="modoEditar[15]">
+                                        <select id="opciones-15" [(ngModel)]="opcionSeleccionada[16]">
+                                            <option *ngFor="let opcion of opciones[16]" [value]="opcion">{{ opcion
+                                                }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[15]" style="margin-left:-10px">
+                                        <button class="btn btn-success btn-sm"
+                                            (click)="guardarSeleccion(16)">Save</button>
+                                    </div>
+                                    <div class="col-md-1 text-center" *ngIf="modoEditar[15]" style="margin-left:-15px">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="cancelarSeleccion(16)">Cancel</button>
+                                    </div>
+                                </div>
+                                <hr style="margin-left:-30px">
+                                <p style="text-align: center; margin-top: 10px;">Has any habit changed? Update the
+                                    following routines here:
+                                </p>
+                                <button class="button-container-2" (click)="confirmarActualizacionRutinas()">
+                                    Update the following routines
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div *ngIf="isLoading" class="loading">
+                            LOADING CUSTOM ANALYSIS...
+                            <img src="assets/Loading.gif" alt="Cargando..."
+                                style="width: 40px; height:40px; margin-top:0px;">
+                        </div>
+
+                        <div *ngIf="descripciones.length > 0" class="container">
+                            <div class="initial-container" *ngIf="!isLoading">
+
+                                <h2 class="analisys-title"
+                                    style="color: #0077B6; padding: 10px;text-align: center; margin-top: 40px;">
+                                    PERSONALIZED ANALYSIS</h2>
+                                <p>
+                                    Based on your lifestyle data, a detailed analysis of your habits and
+                                    <strong>potential improvements</strong> has been conducted.
+                                    Here you will find tailored recommendations and strategies to enhance your
+                                    well-being and achieve your goals
+                                    more effectively.
+                                </p>
+                                <p style="text-align: center;font-size: 1.03rem;">You can update the analysis by
+                                    clicking the following button:</p>
+                                <button class="button-container" (click)="confirmarActualizacion()">Update the data
+                                    analysis</button>
+                                <hr
+                                    style="width: 70px; margin: 2rem auto; border-width: 4px; text-align: center; color: #0077B6;">
+                            </div>
+                            <div class="row" style="margin-bottom:-20px;">
+                                <div *ngFor="let descripcion of descripciones; let i = index" class="col-md-4">
+                                    <div class="card card-2 mb-4"
+                                        [ngStyle]="{'background-color': getBackgroundColor(i),'margin-left': '-12px', 'margin-right': '60px', 'padding': '0px' }">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="color: #0077B6;">
+                                                <strong>{{ analisisPersonalizados[i] }}</strong>
+                                            </h5>
+                                            <ng-container *ngIf="!showFullContent[i] || currentCardIndex !== i">
+                                                <div class="d-flex justify-content-center align-items-center"
+                                                    style="height: 130px;">
+                                                    <img [src]="cardImages[i % cardImages.length]" class="card-img-top"
+                                                        alt="Imagen de la card" style="height: 100px; width: auto;">
+                                                </div>
+                                            </ng-container>
+                                            <ul class="list-group list-group-flush scrollable-list"
+                                                *ngIf="!showFullContent[i] || currentCardIndex !== i">
+                                                <ng-container
+                                                    *ngFor="let keyValuePair of parsedDescripciones[i] | keyvalue">
+                                                    <ng-container
+                                                        *ngIf="keyValuePair.key !== 'habit' && keyValuePair.key !== 'opinion' && keyValuePair.key !== 'potentialImprovement'">
+                                                        <li class="list-group-item d-flex align-items-center"
+                                                            [ngStyle]="{ 'background-color': getBackgroundColor(i) }"
+                                                            style="text-align: justify; height: 100px;">
+                                                            <span>{{ keyValuePair.value }}</span>
+                                                        </li>
+                                                    </ng-container>
+                                                </ng-container>
+                                            </ul>
+                                            <ng-container *ngIf="showFullContent[i] && currentCardIndex === i">
+                                                <ul class="list-group list-group-flush scrollable-list">
+                                                    <ng-container
+                                                        *ngFor="let keyValuePair of parsedDescripciones[i] | keyvalue">
+                                                        <ng-container *ngIf="keyValuePair.key === 'opinion'">
+                                                            <li class="list-group-item d-flex align-items-center"
+                                                                [ngStyle]="{ 'background-color': getBackgroundColor(i) }"
+                                                                style="text-align: justify; height: 120px; margin-bottom:10px; border:none">
+                                                                <span>{{ keyValuePair.value }}</span>
+                                                            </li>
+                                                        </ng-container>
+                                                        <ng-container
+                                                            *ngIf="keyValuePair.key === 'potentialImprovement'">
+                                                            <li class="list-group-item d-flex align-items-center"
+                                                                [ngStyle]="{ 'background-color': getBackgroundColor(i), 'color': isLastCard(i) ? '#800080' : '#007bff' }"
+                                                                style="text-align: justify; height: 120px; padding-top:3px; margin-bottom:-15px;">
+                                                                <strong><span>{{ keyValuePair.value
+                                                                        }}</span></strong>
+                                                            </li>
+                                                        </ng-container>
+                                                    </ng-container>
+                                                </ul>
+                                            </ng-container>
+                                        </div>
+                                        <div class="card-footer"
+                                            [ngStyle]="{ 'background-color': getBackgroundColor(i) }"
+                                            style="border: none; text-align: right;">
+                                            <a style="text-decoration: none; float: right; color: #0077B6; font-weight: bold;"
+                                                (click)="toggleContent(i)">
+                                                {{ showFullContent[i] && currentCardIndex === i ? 'Hide details' :
+                                                'More Info' }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="!isLoading && descripciones.length === 0">
+                            <p>No se encontraron descripciones de análisis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

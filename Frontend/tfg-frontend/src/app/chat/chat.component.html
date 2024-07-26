@@ -1,0 +1,14 @@
+<button class="chat-toggle-button" (click)="toggleChat()">Chat</button>
+
+
+<div class="chat-container" *ngIf="chatVisible">
+  <div class="messages">
+    <div *ngFor="let message of messages.slice(1); let i = index">
+      <div [class]="message.role">
+        {{ message.content }}
+      </div>
+    </div>
+    
+  </div>
+  <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder='Type a message...'>
+</div>

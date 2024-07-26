@@ -1,0 +1,294 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel {
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.carousel-inner {
+    width: 100%;
+    position: relative;
+    max-height: 400px;
+}
+
+.carousel-image-container {
+    width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.carousel-image-container img {
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.overlay h5 {
+    margin: 0;
+    font-size: 1.5rem; 
+    padding-bottom: 10px; 
+}
+
+.overlay p {
+    margin: 0;
+    padding-bottom: 10px; 
+    font-size: 1rem; 
+}
+
+.main-container1 {
+    margin-left: 200px;
+    flex-grow: 1;
+}
+
+app-sidebar {
+    flex: 0 0 200px;
+    max-width: 200px;
+    height: 100%;
+    background-color: #f8f9fa; 
+    transition: transform 0.3s ease-in-out;
+}
+
+.main-container {
+    margin-left: 200px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.container {
+    width: 100%;
+    max-width: 930px;
+    margin: 0 auto;
+}
+
+.title {
+    text-align: left;
+}
+
+.underline {
+    border: none;
+    border-top: 2px solid #000;
+    margin-bottom: 20px;
+}
+
+.card{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+}
+
+.card2 {
+    max-width: 370px; 
+    height: auto; 
+    text-align: center;
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+    margin-left: 20px;
+}
+
+.big-number {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.highlighted {
+    background-color: #03045E;
+    color: #ffff;
+    border-radius: 50%;
+}
+
+.wrapper-calendar {
+    margin: 0.1px auto;
+    padding: 1rem;
+    border: solid 1px #eaeaea;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    max-width: 530px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+}
+
+ol {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.first-day {
+    grid-column-start: var(--first-day-start, 0);
+}
+
+.header-calendar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-calendar h1 {
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.btn-prev, .btn-next {
+    font-size: 1rem;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.days {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(7, 4rem);
+    gap: 1rem;
+}
+
+.day-name {
+    background: #c9e9fc;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.header-calendar button {
+    border: 0;
+    background: transparent; 
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 10px; 
+}
+
+.mostrarRutina {
+    font-size: 1.5rem;
+}
+
+.mensaje {
+    font-size: 1.2rem;
+    margin: auto;
+    text-align: center;
+}
+
+.legend-container {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+}
+
+.not-realizada {
+    background-color: #3dcdea;
+    color: black;
+    cursor: not-allowed;
+    border-radius: 50%;
+}
+
+.card-body2 {
+    text-align: center;
+    padding: 20px;
+    border-width: 10px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-sizing: border-box; 
+}
+
+.card2:hover {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.8);
+    transform: scale(1.04);
+}
+
+@media (max-width: 768px) {
+    .carousel-indicators {
+        display: none;
+    }
+
+    .carousel-inner {
+        max-height: 200px; 
+    }
+
+    .header-calendar h1 {
+        font-size: 1.2rem;
+    }
+
+    .btn-prev,
+    .btn-next {
+        font-size: 0.9rem;
+    }
+
+    .day-name {
+        font-size: 1.2rem;
+        padding: 0.3rem;
+    }
+
+    .overlay {
+        height: 200px; 
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap; 
+        gap: 1rem; 
+        margin-left: 30px;
+    }
+}
+

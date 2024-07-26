@@ -1,0 +1,215 @@
+.main-container {
+  margin-left: 220px;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.achievements-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.achievements-left {
+  width: 65%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.achievement-card p {
+  margin-bottom: -2px;
+  padding: 10px;
+  text-align: center;
+  margin: auto;
+}
+
+.achievements-category {
+  width: 50%;
+  padding: 10px;
+}
+
+.achievement-card {
+  border: 1px solid #ddd;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.achievement-card:hover {
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.8);
+  transform: scale(1.04);
+}
+
+.trophy-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f5f5dc;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.trophy-card.big {
+  padding: 30px;
+}
+
+.trophy-details {
+  margin-top: 15px;
+}
+
+.trophy-title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.trophy-details p {
+  margin-top: 5px;
+  font-size: 0.9em;
+}
+
+.achievement-card.big {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.achievement-card i,
+.trophy-card i {
+  font-size: 1.5em;
+
+}
+
+.achievement-card.unlocked {
+  background-color: #e0ffe0;
+  border-color: #70db70;
+}
+
+.achievement-card:not(.unlocked) {
+  color: #999;
+  background-color: #f0f0f0;
+  border-color: #ddd;
+}
+
+.achievement-card.big.unlocked {
+  background-color: #fff1ba;
+  border-color: #ffdb0d;
+}
+
+.achievements-right {
+  margin-top: 95px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 230px;
+  width: 20%;
+
+}
+
+.trophy-card {
+  margin-right: -45px;
+  width: 130%;
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  background-color: #f0f0f0;
+  border-color: #ddd;
+}
+
+.trophy-card.unlocked {
+  color: #0000ff;
+  background-color: #cce6ff;
+  border-color: #0000ff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+trophy-image {
+  width: 100%;
+  text-align: center;
+}
+
+.trophy-image img {
+  max-width: 100%;
+}
+
+.trophy-image.top {
+  margin-bottom: 20px;
+}
+
+.trophy-image.bottom {
+  margin-top: 20px;
+}
+
+@media (max-width: 1300px) {
+  .achievements-right {
+    width: 45%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .achievements-left {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .achievements-category {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .achievements-right {
+    width: 50%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .achievements-left {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .achievements-category {
+    width: 100%;
+  }
+}

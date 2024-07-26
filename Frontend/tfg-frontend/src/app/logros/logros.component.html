@@ -1,0 +1,133 @@
+<app-sidebar></app-sidebar>
+<div class="main-container">
+  <h2 class="title" style="color: #0077B6; padding: 3px; text-align: center; margin-top: 40px;">GET ALL
+    THE TROPHIES, ACHIEVE ALL YOUR GOALS!</h2>
+  <p style="text-align: center;font-size: 1.03rem; margin-top:10px;">
+    You will be able to earn all the <span style="font-weight: bold;">trophies</span> as you complete the <span
+      style="font-weight: bold;">routines</span>.
+    Unlocked trophies will appear <span style="font-weight: bold;">colored</span>; click on them to see on the right how
+    to unlock them and the
+    <span style="font-weight: bold;">benefits</span> they bring. Be <span style="font-weight: bold;">consistent</span>
+    and stay <span style="font-weight: bold;">
+      motivated</span>, as every trophy represents a <span style="font-weight: bold;">milestone</span> in your journey.
+  </p>
+  <hr style="width: 70px; margin: 2rem auto; border-width: 4px; color: #0077B6;">
+  <div class="container" style="margin-bottom: 20px;">
+
+    <div class="achievements-container">
+      <div class="achievements-left">
+        <div class="achievements-category">
+          <h2 style="text-align: center;">Completed Routines</h2>
+          <hr style="margin-top: 20px;">
+          <div class="achievement-card" [class.unlocked]="isUnlocked(1)" (click)="selectAchievement(1)">
+            <i class="fas fa-running"></i>
+            <p>Complete 5 routines</p>
+          </div>
+          <div class="achievement-card" [class.unlocked]="isUnlocked(2)" (click)="selectAchievement(2)">
+            <i class="fas fa-running"></i>
+            <p>Complete 10 routines</p>
+          </div>
+          <div class="achievement-card" [class.unlocked]="isUnlocked(3)" (click)="selectAchievement(3)">
+            <i class="fas fa-running"></i>
+            <p>Complete 20 routines</p>
+          </div>
+          <div class="achievement-card " [class.unlocked]="isUnlocked(4)" (click)="selectAchievement(4)">
+            <i class="fas fa-running"></i>
+            <p>Complete 50 routines</p>
+          </div>
+          <div class="achievement-card big" [class.unlocked]="isUnlocked(5)" (click)="selectAchievement(5)">
+            <i class="fas fa-trophy"></i>
+            <p>Complete 100 routines</p>
+          </div>
+        </div>
+        <div class="achievements-category">
+          <h2 style="text-align: center;">Consistency</h2>
+          <hr style="margin-top: 20px;">
+          <div class="achievement-card" [class.unlocked]="isUnlocked(6)" (click)="selectAchievement(6)">
+            <i class="fas fa-calendar-check"></i>
+            <p>24 hours of activity</p>
+          </div>
+          <div class="achievement-card" [class.unlocked]="isUnlocked(7)" (click)="selectAchievement(7)">
+            <i class="fas fa-calendar-check"></i>
+            <p>One week of activity</p>
+          </div>
+          <div class="achievement-card" [class.unlocked]="isUnlocked(8)" (click)="selectAchievement(8)">
+            <i class="fas fa-calendar-check"></i>
+            <p>One month of activity</p>
+          </div>
+          <div class="achievement-card" [class.unlocked]="isUnlocked(9)" (click)="selectAchievement(9)">
+            <i class="fas fa-calendar-check"></i>
+            <p>Five months of activity</p>
+          </div>
+          <div class="achievement-card big" [class.unlocked]="isUnlocked(10)" (click)="selectAchievement(10)">
+            <i class="fas fa-trophy"></i>
+            <p>Ten months of activity</p>
+          </div>
+        </div>
+        <div class="achievements-category">
+          <h2 style="text-align: center;">Points Earned</h2>
+          <hr style="margin-top: 20px;">
+          <div class="achievement-card" [class.unlocked]="isUnlocked(11)" (click)="selectAchievement(11)">
+            <i class="fas fa-star"></i>
+            <p>Earn 50 points</p>
+          </div>
+          <div class="achievement-card" [class.unlocked]="isUnlocked(12)" (click)="selectAchievement(12)">
+            <i class="fas fa-star"></i>
+            <p>Earn 100 points</p>
+          </div>
+          <div class="achievement-card" [class.unlocked]="isUnlocked(13)" (click)="selectAchievement(13)">
+            <i class="fas fa-star"></i>
+            <p>Earn 200 points</p>
+          </div>
+          <div class="achievement-card" [class.unlocked]="isUnlocked(14)" (click)="selectAchievement(14)">
+            <i class="fas fa-star"></i>
+            <p>Earn 500 points</p>
+          </div>
+          <div class="achievement-card big" [class.unlocked]="isUnlocked(15)" (click)="selectAchievement(15)">
+            <i class="fas fa-trophy"></i>
+            <p>Earn 1000 <br>points</p>
+          </div>
+        </div>
+        
+        <div class="achievements-category">
+          <h2 style="text-align: center;">Routines by Time</h2>
+          <hr style="margin-top: 20px;">
+          <div class="achievement-card" [class.unlocked]="isUnlocked(16)" (click)="selectAchievement(16)">
+            <i class="fas fa-sun"></i>
+            <p>Complete a routine AM</p>
+          </div>
+          <div class="achievement-card" [class.unlocked]="isUnlocked(17)" (click)="selectAchievement(17)">
+            <i class="fas fa-moon"></i>
+            <p>Complete a routine PM</p>
+          </div>
+          <div class="achievement-card" [class.unlocked]="isUnlocked(18)" (click)="selectAchievement(18)">
+            <i class="fas fa-sun"></i>
+            <p>Complete 20 routines AM</p>
+          </div>
+          <div class="achievement-card" [class.unlocked]="isUnlocked(19)" (click)="selectAchievement(19)">
+            <i class="fas fa-moon"></i>
+            <p>Complete 20 routines PM</p>
+          </div>
+          <div class="achievement-card big" [class.unlocked]="isUnlocked(20)" (click)="selectAchievement(20)">
+            <i class="fas fa-trophy"></i>
+            <p>Complete all routines by AM/PM</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="achievements-right">
+        <div class="trophy-card big" [class.unlocked]="isUnlocked(selectedTrophyId)">
+          <i class="fas fa-award"></i>
+          <div class="trophy-details">
+            <p class="trophy-title" style="font-weight: bold;font-size: 1.2em;">{{ getTitle(selectedTrophyId) }}</p>
+            <div class="trophy-description" [innerHTML]="getDescription(selectedTrophyId)" style="text-align: justify;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+.my-container {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.card {
+  border: none;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.btn-primary {
+  width: 100%;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+div.error-message {
+  min-height: 0.1em;
+  visibility: hidden;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.background-image-container {
+  background-image: url('src/assets/Registro.jpg');
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.background-image-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(198, 190, 241, 0.175);
+}
+
+.background-image-container .text-left {
+  position: relative;
+  z-index: 1;
+  color: white;
+  padding: 20px;
+}
+
+.my-container .col-md-4,
+.my-container .col-md-5 {
+  padding: 0;
+}

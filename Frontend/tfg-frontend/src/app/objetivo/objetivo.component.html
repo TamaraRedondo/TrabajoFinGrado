@@ -1,0 +1,197 @@
+<app-sidebar></app-sidebar>
+<div class="main-container1">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <div class="carousel-indicators" style="margin-left:225px;">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <div class="carousel-image-container">
+                    <img src="assets/Objetivo2.jpg">
+                    <div class="overlay">
+                        <h5>EMBRACE JOY</h5>
+                        <p>"True happiness comes from within.</p>
+                        <p>Cultivate gratitude, spread
+                            kindness, and let your inner light shine."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-image-container">
+                    <img src="assets/Objetivo.jpg">
+                    <div class="overlay">
+                        <h5>ACHIEVE GOALS</h5>
+                        <p>"Striving for success is not just about reaching your goals;
+                        </p>
+                        <p>it's
+                            about embracing the journey and becoming the person you aspire to be."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item active">
+                <div class="carousel-image-container">
+                    <img src="assets/Objetivo3.jpg">
+                    <div class="overlay">
+                        <h5>FEEL AGILE</h5>
+                        <p>"To feel more agile, nurture your body,</p>
+                        <p>sharpen your mind, and
+                            dance through life with grace and ease."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<div class="main-container">
+    <div class="container">
+        <h2 class="title" style="color: #0077B6; padding: 3px; text-align: center; margin-top: 40px;">GOALS
+            ATTAINED</h2>
+        <div class="container" style=" margin-bottom: 20px;">
+            <p style="text-align: center; font-size: 1.03rem;">Here you will see the data of <span
+                    style="font-weight: bold;">exercises</span>
+                and <span style="font-weight: bold;">completed routines</span>, as well as the number of <span
+                    style="font-weight: bold;">hours</span>
+                you have been active, and the <span style="font-weight: bold;">points</span> earned from completing
+                exercises corresponding to
+                the level indicated on the initial card of your daily routine.
+                Below, you will find a <span style="font-weight: bold;">calendar</span> that will indicate your
+                <span style="font-weight: bold;">
+                    completed</span> and <span style="font-weight: bold;">upcoming routines</span> in their
+                respective <span style="font-weight: bold;">
+                    colors</span>, and it will break down each completed routine by clicking on that <span
+                    style="font-weight: bold;">day</span>.
+            </p>
+            <hr style="width: 70px; margin: 2rem auto; border-width: 4px; text-align: center; color: #0077B6;">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>You have completed,</p>
+                            <div class="big-number">{{ objetivo?.ejerciciosRealizados }}</div>
+                            <p>exercises!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>You have completed,</p>
+                            <div class="big-number">{{ objetivo?.rutinasRealizadas }}</div>
+                            <p>routines!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>You have been active,</p>
+                            <div class="big-number">{{ objetivo?.horasTotales }}</div>
+                            <p>hours!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>You have earned,</p>
+                            <div class="big-number">{{ objetivo?.puntosObtenidos }}</div>
+                            <p>points!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-bottom: 50px;">
+        <h2 class="calendar-title" style="color: #0077B6; padding: 10px;text-align: center; margin-top: 40px;">
+            ROUTINES
+            CALENDAR</h2>
+        <p style="text-align: center; font-size: 1.03rem;">Welcome to your routines calendar! This calendar
+            provides an overview of your
+            <span style="font-weight: bold;">completed</span> and <span style="font-weight: bold;">upcoming
+                routines</span>.
+            Take a look at your past routines by clicking on the respective dates, and explore the exercises you've
+            performed.
+            It's a great way to track your progress and stay <span style="font-weight: bold;">motivated</span> on
+            your
+            fitness
+            journey. Keep up the <span style="font-weight: bold;">great work</span>!
+        </p>
+        <hr style="width: 70px; margin: 2rem auto; border-width: 4px; text-align: center; color: #0077B6">
+        <div class="wrapper-calendar" style="margin-bottom: 20px ;">
+            <div class="header-calendar">
+                <div>
+                    <button (click)="changeMonth(-1)" class="btn-prev"><i class="fas fa-chevron-left"></i></button>
+                </div>
+                <h1>{{ dateSelect | date:'MMMM, yyyy' }}</h1>
+                <div>
+                    <button (click)="changeMonth(1)" class="btn-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <ol>
+                <li *ngFor="let day of week" class="day-name">{{ day | slice:0:3 }}</li>
+                <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+                    *ngFor="let day of monthSelect; let first = first" [class.highlighted]="day.isRutinaRealizada"
+                    [class.not-realizada]="!day.isRutinaRealizada && day.isHighlighted">
+                    <span>{{ day?.value }}</span>
+                </li>
+            </ol>
+
+            <hr>
+
+            <div class="contenedor-date" style="width: 470px;">
+                <div class="mostrarRutina" style="margin-top:-10px;font-size: 1rem;">
+                    Date: {{ dateValue | date}}
+                </div>
+
+                <div class="legend-container" style="margin-top:-30px; font-size: 1rem;">
+                    <div class="legend-color" style="background-color: #03045E;"></div>
+                    <span class="legend-text">Completed Routine</span>
+                    <div class="legend-color" style="background-color: #3dcdea;  margin-left:15px;"></div>
+                    <span class="legend-text">Pending Routine</span>
+                </div>
+
+            </div>
+        </div>
+        <div *ngIf="mensaje" class="mensaje">{{ mensaje }}</div>
+    </div>
+
+    <div *ngIf="ejerciciosDeRutina && ejerciciosDeRutina.length" class="container">
+        <h2 class="calendar-title" style="color: #0077B6; padding: 10px;text-align: center; margin-top: 40px;">
+            SELECTED
+            ROUTINE</h2>
+        <p style="text-align: center; font-size: 1.03rem;">Here are your exercises completed on {{
+            dateValue | date }}, with all
+            sets and repetitions,
+            the technical explanation, and their difficulty level from 1 to 10. Here you can review past exercises
+            and
+            progress further.</p>
+        <hr style="width: 70px; margin: 2rem auto; border-width: 4px; text-align: center; color: #0077B6">
+    </div>
+
+    <div *ngIf="ejerciciosDeRutina && ejerciciosDeRutina.length" style="margin-bottom: 50px;">
+        <div class="row">
+            <div class="col-md-4 mb-3" *ngFor="let ejercicio of ejerciciosDeRutina">
+                <div class="card2">
+                    <div class="card-body2">
+                        <div [innerHTML]="ejercicio | formatValue" style="font-family: Arial, sans-serif;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

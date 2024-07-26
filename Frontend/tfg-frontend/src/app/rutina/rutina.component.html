@@ -1,0 +1,131 @@
+<div class="main-layout">
+  <app-sidebar></app-sidebar>
+  <div class="container1" *ngIf="isLoading">
+    <div class="center-content">
+      <h2 class="color-change">WE'RE CREATING YOUR PERSONALIZED ROUTINE...</h2>
+      <img src="assets/Load.gif" alt="Cargando..." style="height:120px;">
+    </div>
+  </div>
+
+  <div class="container" *ngIf="!isLoading && ejercicios && ejercicios.length > 0">
+    <div class="row gx-4 gy-5">
+      <div class="col-md-5" style="margin-left: 40px;">
+        <div class="card mb-2 h-320">
+          <div class="card-body">
+            <h4 class="card-title text-muted" style="margin-top:5px;">KEY CARD</h4>
+            <div class="row">
+              <div class="col-auto" style="margin-top:-8px;">
+                <div class="legend-container" style="margin-top: -30px; font-size: 1rem;">
+                  <div class="legend-item">
+                    <div class="legend-color" style="background-color: #00986C;"></div>
+                    <span class="legend-text">Lvl 1</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background-color: #00AED6;"></div>
+                    <span class="legend-text">Lvl 2</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background-color: #4682B4;"></div>
+                    <span class="legend-text">Lvl 3</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background-color: #A770B2;"></div>
+                    <span class="legend-text">Lvl 4</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background-color: #7B2CBF;"></div>
+                    <span class="legend-text">Lvl 5</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background-color: #5A189A;"></div>
+                    <span class="legend-text">Lvl 6</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background-color: #005C6F;"></div>
+                    <span class="legend-text">Lvl 7</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background-color: #A9A9A9;"></div>
+                    <span class="legend-text">Lvl 8</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col" style="margin-left:32px; margin-right: 20px;">
+                <p style="text-align: justify; margin-top:20px;">You'll find your daily routine here, split into 7
+                  exercises ranging from cardio at the start to stretching at the end. </p>
+                <p style="text-align: justify;">
+                  For exercise guidance, refer to provided technical explanations or ask the chat in the bottom-left
+                  corner. Exercises are categorized by difficulty
+                  levels from 1 to 8, with corresponding colors displayed on the left.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-5" style="margin-left: 40px;"
+        *ngFor="let ejercicio of ejercicios; let i = index; let first = first; let last = last">
+        <div class="card mb-2 h-330">
+          <div class="row g-0 h-100">
+            <div class="col-md-1 h-100">
+              <div class="card-image-container h-100"
+                *ngFor="let keyValuePair of parseDescription(ejercicio.datos) | keyvalue">
+                <ng-container *ngIf="keyValuePair.key === 'Difficulty level'">
+                  <div [style.background-color]="getBackgroundColor(keyValuePair.value)"
+                    class="h-100 d-flex align-items-center justify-content-center" style="width: 100px;">
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <div class="col-md-11">
+              <div class="card-body">
+                <h4 class="card-title text-black ">{{ ejercicio.nombre }}</h4>
+                <h5 class="card-title" style="color:blue; margin-top: -10px;">{{ getEjercicioName(i) }}</h5>
+                <div class="table-responsive" style="max-height: 190px; overflow-y: auto;">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let keyValuePair of parseDescription(ejercicio.datos) | keyvalue">
+                        <ng-container *ngIf="keyValuePair.key !== 'Name'">
+                          <td><strong>{{ keyValuePair.key }}</strong></td>
+                          <td>{{ keyValuePair.value }}</td>
+                        </ng-container>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="text-center" style="margin-top: 17px;">
+                  <button type="button" class="btn btn-sm" [class.btn-success]="ejercicio.realizado"
+                    [class.btn-secondary]="!ejercicio.realizado" (click)="toggleExerciseCompleted(ejercicio)">
+                    {{ ejercicio.realizado ? 'Exercise completed' : 'Mark as completed' }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="rutinaCompletada" class="modal">
+      <div class="modal-content text-center">
+        <p style="color: blue; font-weight: bold;">YOU'VE COMPLETED THE ROUTINE, DARE TO CONTINUE ANOTHER DAY?</p>
+        <p style="font-size: 15px;">"The only limit to our realization of tomorrow is our doubts of today."</p>
+        <button class="btn btn-primary" (click)="obtenerSiguienteRutina(); rutinaCompletada = false">Next
+          routine</button>
+      </div>
+    </div>
+    <div *ngIf="finalRutina" class="modal">
+      <div class="modal-content text-center">
+        <p style="color: blue; font-weight: bold;">MONTHLY ROUTINE COMPLETED!</p>
+        <p style="font-size: 15px;">"Believe in yourself and all that you are. Know that there is something inside you
+          that is greater than any obstacle."</p>
+        <button class="btn btn-primary" (click)="rutinaSiguienteMes(); rutinaCompletada = false">Next routine</button>
+      </div>
+    </div>
+
+    <div *ngIf="!ejercicios || ejercicios.length === 0 && !isLoading" class="no-exercises">
+      <p>No hay ejercicios en esta rutina.</p>
+    </div>
+  </div>
+</div>

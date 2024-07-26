@@ -1,0 +1,70 @@
+.chat-toggle-button {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #0077B6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.chat-toggle-button:hover {
+    background-color: #005f8c;
+}
+
+.chat-container {
+    width: 370px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 55px;
+    left: 10px;
+    background-color: white;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ng-valid:not(form).ng-touched {
+    border: none;
+}
+
+.messages {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+input {
+    width: calc(100% - 4px);
+    padding: 5px;
+}
+
+.user {
+    color: #43880e;
+    align-self: flex-end;
+    text-align: right;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.assistant {
+    color: #0077B6;
+    align-self: flex-start;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.system {
+    align-self: flex-start;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

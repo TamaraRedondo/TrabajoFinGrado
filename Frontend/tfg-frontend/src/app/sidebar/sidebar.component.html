@@ -1,0 +1,34 @@
+
+<div class="wrapper">
+    <nav class="sidebar" style="width: 220px;">
+
+        <div class="logo">
+            <img [src]="getImgUrl('Icono_principal.png')" alt="Descripción de la imagen">
+        </div>
+
+        <ul class="list-unstyled menu-elements">
+            <li>
+                <a class="scroll-link" href="#section-2" routerLink="/datos-personales"><i class="fas fa-user" style=" margin-left:10px;"></i> My
+                    profile</a>
+            </li>
+            <li>
+                <a class="scroll-link" href="#section-3" routerLink="/rutina"><i class="fas fa-running" style=" margin-left:10px;"></i> Daily
+                   Routine</a>
+            </li>
+            <li>
+                <a class="scroll-link" routerLink="/objetivo"><i class="fas fa-pencil-alt" style=" margin-left:10px;"></i> Objectives</a>
+            </li>
+            <li>
+                <a class="scroll-link" routerLink="/logro"><i class="fas fa-trophy" style=" margin-left:10px;"></i> Achievements</a>
+            </li>
+        </ul>
+
+       <div class="sidebar-footer-container">
+            <ul class="list-unstyled">
+                <li *ngIf="userLoginOn" class="nav-item">
+                    <a class="nav-link" (click)="logout()" routerLink="/inicio">Logout</a>
+                </li>
+            </ul>
+       </div>
+    </nav>
+</div>

@@ -1,0 +1,71 @@
+<div class="container my-container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="background-image-container d-flex justify-content-end align-items-end">
+        <div class="text-left p-4">
+          <div *ngIf="preguntaActualIndex < curiosityTexts.length">
+            <h4 mb-4>{{ curiosityQuestions[preguntaActualIndex] }}</h4>
+            <p>{{ curiosityTexts[preguntaActualIndex] }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow fixed-height-card">
+        <div class="card-body">
+          <h5 class="text-center mb-4">Questionnaire</h5>
+          <div id="cuestionario">
+            <div *ngIf="preguntas && preguntas.length > 0">
+              <div class="input" *ngIf="preguntaActualIndex === 0">
+                <h6>{{ preguntas[preguntaActualIndex].texto }}</h6>
+                <input type="text" [(ngModel)]="opcionSeleccionada" placeholder="Write your answer...">
+              </div>
+              <div class="input" *ngIf="preguntaActualIndex === 1">
+                <h6>{{ preguntas[preguntaActualIndex].texto }}</h6>
+                <input type="text" [(ngModel)]="opcionSeleccionada" placeholder="Write your answer...">
+              </div>
+
+              <div *ngIf="preguntaActualIndex > 1 && preguntaActualIndex !== 6 && preguntaActualIndex !== 7">
+                <h6>{{ preguntas[preguntaActualIndex].texto }}</h6>
+                <ul class="fixed-ul">
+                  <div *ngFor="let opcion of preguntas[preguntaActualIndex].opciones">
+                    <input [disabled]="preguntaAnteriorSeleccionada" type="radio" name="opcion" [value]="opcion"
+                      [(ngModel)]="opcionSeleccionada">
+                    {{ opcion }}
+                  </div>
+                </ul>
+              </div>
+
+              <div *ngIf="preguntaActualIndex === 6 || preguntaActualIndex === 7">
+                <h6>{{ preguntas[preguntaActualIndex].texto }}</h6>
+                <ul class="fixed-ul">
+                  <ng-container *ngFor="let opcion of preguntas[preguntaActualIndex].opciones; let i = index">
+                    <ng-container *ngIf="i < preguntas[preguntaActualIndex].opciones.length - 1; else inputField">
+                      <div>
+                        <input [disabled]="preguntaAnteriorSeleccionada" type="radio" name="opcion" [value]="opcion"
+                          [(ngModel)]="opcionSeleccionada">
+                        {{ opcion }}
+                      </div>
+                    </ng-container>
+                    <ng-template #inputField>
+                      <div>Another injury:
+                        <input [disabled]="preguntaAnteriorSeleccionada" type="text" [(ngModel)]="opcionSeleccionada">
+                      </div>
+                    </ng-template>
+                  </ng-container>
+                </ul>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <button *ngIf="!ultimaPregunta()" [disabled]="!mostrarSiguientePregunta()"
+                    class="btn btn-primary float-right" (click)="guardarSeleccion()">Next &gt;</button>
+                  <button *ngIf="ultimaPregunta()" class="btn btn-primary float-right ml-2"
+                    [routerLink]="['/iniciar-sesion']" (click)="guardarSeleccion()">Generate routine</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
